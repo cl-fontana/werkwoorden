@@ -1,0 +1,2082 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <title>Onregelmatige werkwoorden oefenen</title>
+
+    <meta name="description" content="Oefenen met Nederlandse onregelmatige werkwoorden">
+    <meta name="keywords" content="Nederlands onregelmatige werkwoorden">
+
+    <style>
+/* Original style by https://colorlib.com/wp/template/colorlib-regform-4/ */
+/* Author: Colorlib */
+/* Released: 2021 */
+/* License: CC BY 3.0 */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    background: linear-gradient(to top right,#fc2c77 0%,#6c4079 100%);
+    background: linear-gradient(to top right,#AD1D25 0%,#1E4785 100%);
+}
+
+.container_main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 120px;
+    padding-top: 30px;
+    min-height: 100vh;
+}
+
+.container_input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 6px 30px 0 rgba(0,0,0,.15);
+    padding: 30px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #525252;
+    font-weight: 200;
+    margin-bottom: 30px;
+}
+
+label {
+    font-size: 16px;
+    color: #555;
+    text-transform: capitalize;
+    display: block;
+    margin-bottom: 6px;
+}
+
+input {
+    line-height: 50px;
+    background: #fafafa;
+    border-radius: 6px;
+    padding: 0 30px;
+    color: #666;
+    outline: none;
+    margin: 0;
+    border: none;
+    box-shadow: inset 0 1px 3px 0 rgba(0,0,0,.08);
+    width: 100%;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+select {
+    line-height: 50px;
+    background: #fafafa;
+    border-radius: 6px;
+    padding: 0 30px;
+    color: #666;
+    outline: none;
+    margin: 0;
+    border: none;
+    box-shadow: inset 0 1px 3px 0 rgba(0,0,0,.08);
+    width: 100%;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+button {
+    outline: none;
+    background: #0098D4;
+    border-radius: 6px;
+    border: none;
+    display: inline-block;
+    line-height: 60px;
+    padding: 0 30px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+}
+
+.output {
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+.input {
+    margin: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container_main">
+        <div class="container_input">
+            <h1>Onregelmatige werkwoorden oefenen</h1>
+
+            <!-- The button to start the exercise -->
+            <div class="output">
+                <button class="button" id="start">Nieuwe werkwoord</button>
+                <div class='input'>
+                    <label for='language'>Taal:</label>
+                    <select id="language" tabindex="-1" aria-hidden="true">
+                        <option value="nederlands">Nederlands</option>
+                        <option value="engels">Engels</option>
+                        <option value="italiaans">Italiaans</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- The output to show the chosen entry -->
+            <div class="output">
+                <p>Werkwoord: <span class="bold" id="output"></span></p>
+            </div>
+
+            <!-- The input fields -->
+            <div class="output">
+                <div class='input'>
+                    <label for='infinitief'>Infinitief:</label>
+                    <input type='text' id='infinitief'>
+                </div>
+                <div class='input'>
+                    <label for='imperfectum_singularis'>Imperfectum singularis:</label>
+                    <input type='text' id='imperfectum_singularis'>
+                </div>
+                <div class='input'>
+                    <label for='imperfectum_pluralis'>Imperfectum pluralis:</label>
+                    <input type='text' id='imperfectum_pluralis'>
+                </div>
+                <div class='input'>
+                    <label for='participium'>Participium:</label>
+                    <input type='text' id='participium'>
+                </div>
+
+                <button class='button' id='check'>Controleer</button>
+            </div>
+
+            <!-- The output to show the result -->
+            <div class="output">
+                <p class="bold" id="result"></p>
+                <p id="correct_version"></p>
+                <p id="counter"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- The JSON object that contains the array of entries -->
+    <script type="application/json" id="verba">
+[
+    {
+        "select": 1,
+        "engels": "bite",
+        "italiaans": "mordere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "bijten",
+        "imperfectum singularis": "beet",
+        "imperfectum pluralis": "beten",
+        "participium": "gebeten",
+        "auxiliare": "hebben",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "have breakfast",
+        "italiaans": "fare colazione",
+        "reflexieve": "",
+        "prefix": "ont",
+        "infinitief": "bijten",
+        "imperfectum singularis": "ontbeet",
+        "imperfectum pluralis": "ontbeten",
+        "participium": "ontbeten",
+        "auxiliare": "hebben",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "show",
+        "italiaans": "mostrarsi",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "blijken",
+        "imperfectum singularis": "bleek",
+        "imperfectum pluralis": "bleken",
+        "participium": "geblek",
+        "auxiliare": "",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "remain",
+        "italiaans": "rimanere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "blijven",
+        "imperfectum singularis": "bleef",
+        "imperfectum pluralis": "bleven",
+        "participium": "gebleven",
+        "auxiliare": "zijn",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "disappear",
+        "italiaans": "sparire",
+        "reflexieve": "",
+        "prefix": "ver",
+        "infinitief": "dwijnen",
+        "imperfectum singularis": "verdween",
+        "imperfectum pluralis": "verdwenen",
+        "participium": "verdwen",
+        "auxiliare": "",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "slide",
+        "italiaans": "scivolare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "glijden",
+        "imperfectum singularis": "gleed",
+        "imperfectum pluralis": "gleden",
+        "participium": "gegleden",
+        "auxiliare": "",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "grab",
+        "italiaans": "afferrare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "grijpen",
+        "imperfectum singularis": "greep",
+        "imperfectum pluralis": "grepen",
+        "participium": "gegrepen",
+        "auxiliare": "",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "get (understand)",
+        "italiaans": "afferrare (capire)",
+        "reflexieve": "",
+        "prefix": "be",
+        "infinitief": "grijpen",
+        "imperfectum singularis": "begreep",
+        "imperfectum pluralis": "begrepen",
+        "participium": "begrepen",
+        "auxiliare": "",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "look",
+        "italiaans": "guardare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "kijken",
+        "imperfectum singularis": "keek",
+        "imperfectum pluralis": "keken",
+        "participium": "gekeken",
+        "auxiliare": "hebben",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "examine",
+        "italiaans": "esaminare",
+        "reflexieve": "",
+        "prefix": "be",
+        "infinitief": "kijken",
+        "imperfectum singularis": "bekeek",
+        "imperfectum pluralis": "bekeken",
+        "participium": "bekeken",
+        "auxiliare": "hebben",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "get (receive)",
+        "italiaans": "ottenere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "krijgen",
+        "imperfectum singularis": "kreeg",
+        "imperfectum pluralis": "kregen",
+        "participium": "gekregen",
+        "auxiliare": "hebben",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "suffer",
+        "italiaans": "soffrire",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "lijden",
+        "imperfectum singularis": "leed",
+        "imperfectum pluralis": "leden",
+        "participium": "geleden",
+        "auxiliare": "hebben",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "die",
+        "italiaans": "morire",
+        "reflexieve": "",
+        "prefix": "over",
+        "infinitief": "lijden",
+        "imperfectum singularis": "overleed",
+        "imperfectum pluralis": "overleden",
+        "participium": "overleden",
+        "auxiliare": "zijn",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "resemble",
+        "italiaans": "sembrare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "lijken",
+        "imperfectum singularis": "leek",
+        "imperfectum pluralis": "leken",
+        "participium": "geleken",
+        "auxiliare": "hebben",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "drive",
+        "italiaans": "guidare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "rijden",
+        "imperfectum singularis": "reed",
+        "imperfectum pluralis": "reden",
+        "participium": "gereden",
+        "auxiliare": "hebben/zijn",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "shine",
+        "italiaans": "brillare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "schijnen",
+        "imperfectum singularis": "scheen",
+        "imperfectum pluralis": "schenen",
+        "participium": "geschenen",
+        "auxiliare": "hebben",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "appear, emerge",
+        "italiaans": "apparire",
+        "reflexieve": "",
+        "prefix": "ver",
+        "infinitief": "schijnen",
+        "imperfectum singularis": "verscheen",
+        "imperfectum pluralis": "verschenen",
+        "participium": "verschenen",
+        "auxiliare": "zijn",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "write",
+        "italiaans": "scrivere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "schrijven",
+        "imperfectum singularis": "schreef",
+        "imperfectum pluralis": "schreven",
+        "participium": "geschreven",
+        "auxiliare": "hebben",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "describe",
+        "italiaans": "descrivere",
+        "reflexieve": "",
+        "prefix": "be",
+        "infinitief": "schrijven",
+        "imperfectum singularis": "beschreef",
+        "imperfectum pluralis": "beschreven",
+        "participium": "beschreven",
+        "auxiliare": "hebben",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "define",
+        "italiaans": "definire",
+        "reflexieve": "",
+        "prefix": "om",
+        "infinitief": "schrijven",
+        "imperfectum singularis": "omschreef",
+        "imperfectum pluralis": "omschreven",
+        "participium": "omschreven",
+        "auxiliare": "hebben",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "cut",
+        "italiaans": "tagliare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "snijden",
+        "imperfectum singularis": "sneed",
+        "imperfectum pluralis": "sneden",
+        "participium": "gesneden",
+        "auxiliare": "hebben",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "iron",
+        "italiaans": "stirare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "strijken",
+        "imperfectum singularis": "streek",
+        "imperfectum pluralis": "streken",
+        "participium": "gestreken",
+        "auxiliare": "hebben",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "indicate",
+        "italiaans": "indicare, additare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "wijzen",
+        "imperfectum singularis": "wees",
+        "imperfectum pluralis": "wezen",
+        "participium": "gewezen",
+        "auxiliare": "hebben",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "prove",
+        "italiaans": "provare (garantire)",
+        "reflexieve": "",
+        "prefix": "be",
+        "infinitief": "wijzen",
+        "imperfectum singularis": "bewees",
+        "imperfectum pluralis": "bewezen",
+        "participium": "bewezen",
+        "auxiliare": "hebben",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "refer",
+        "italiaans": "referire",
+        "reflexieve": "",
+        "prefix": "ver",
+        "infinitief": "wijzen",
+        "imperfectum singularis": "verwees",
+        "imperfectum pluralis": "verwezen",
+        "participium": "verwezen",
+        "auxiliare": "hebben",
+        "klasse ": 1
+    },
+    {
+        "select": 1,
+        "engels": "present",
+        "italiaans": "presentare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "bieden",
+        "imperfectum singularis": "bood",
+        "imperfectum pluralis": "boden",
+        "participium": "geboden",
+        "auxiliare": "hebben",
+        "klasse ": "2A"
+    },
+    {
+        "select": 1,
+        "engels": "forbid",
+        "italiaans": "proibire",
+        "reflexieve": "",
+        "prefix": "ver",
+        "infinitief": "bieden",
+        "imperfectum singularis": "verbood",
+        "imperfectum pluralis": "verboden",
+        "participium": "verboden",
+        "auxiliare": "hebben",
+        "klasse ": "2A"
+    },
+    {
+        "select": 1,
+        "engels": "pour",
+        "italiaans": "versare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "gieten",
+        "imperfectum singularis": "goot",
+        "imperfectum pluralis": "goten",
+        "participium": "gegoten",
+        "auxiliare": "hebben",
+        "klasse ": "2A"
+    },
+    {
+        "select": 1,
+        "engels": "choose",
+        "italiaans": "scegliere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "kiezen",
+        "imperfectum singularis": "koos",
+        "imperfectum pluralis": "kozen",
+        "participium": "gekozen",
+        "auxiliare": "hebben",
+        "klasse ": "2A"
+    },
+    {
+        "select": 1,
+        "engels": "prefer",
+        "italiaans": "preferire, eleggere",
+        "reflexieve": "",
+        "prefix": "ver",
+        "infinitief": "kiezen",
+        "imperfectum singularis": "verkoos",
+        "imperfectum pluralis": "verkozen",
+        "participium": "verkozen",
+        "auxiliare": "hebben",
+        "klasse ": "2A"
+    },
+    {
+        "select": 1,
+        "engels": "lie",
+        "italiaans": "mentire",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "liegen",
+        "imperfectum singularis": "loog",
+        "imperfectum pluralis": "logen",
+        "participium": "gelogen",
+        "auxiliare": "hebben",
+        "klasse ": "2A"
+    },
+    {
+        "select": 1,
+        "engels": "enjoy",
+        "italiaans": "godere",
+        "reflexieve": "",
+        "prefix": "ge",
+        "infinitief": "nieten",
+        "imperfectum singularis": "genoot",
+        "imperfectum pluralis": "genoten",
+        "participium": "genoten",
+        "auxiliare": "hebben",
+        "klasse ": "2A"
+    },
+    {
+        "select": 1,
+        "engels": "shoot",
+        "italiaans": "sparare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "schieten",
+        "imperfectum singularis": "schoot",
+        "imperfectum pluralis": "schoten",
+        "participium": "geschoten",
+        "auxiliare": "hebben",
+        "klasse ": "2A"
+    },
+    {
+        "select": 1,
+        "engels": "fly",
+        "italiaans": "volare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "vliegen",
+        "imperfectum singularis": "vloog",
+        "imperfectum pluralis": "vlogen",
+        "participium": "gevlogen",
+        "auxiliare": "hebben/zijn",
+        "klasse ": "2A"
+    },
+    {
+        "select": 1,
+        "engels": "lose",
+        "italiaans": "smarrire, perdere",
+        "reflexieve": "",
+        "prefix": "ver",
+        "infinitief": "liezen",
+        "imperfectum singularis": "verloor",
+        "imperfectum pluralis": "verloren",
+        "participium": "verloren",
+        "auxiliare": "hebben",
+        "klasse ": "2A"
+    },
+    {
+        "select": 1,
+        "engels": "shut, close",
+        "italiaans": "chiudere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "sluiten",
+        "imperfectum singularis": "sloot",
+        "imperfectum pluralis": "sloten",
+        "participium": "gesloten",
+        "auxiliare": "hebben",
+        "klasse ": "2B"
+    },
+    {
+        "select": 1,
+        "engels": "conclude, decide",
+        "italiaans": "decidere",
+        "reflexieve": "",
+        "prefix": "be",
+        "infinitief": "sluiten",
+        "imperfectum singularis": "sloot",
+        "imperfectum pluralis": "sloten",
+        "participium": "gesloten",
+        "auxiliare": "hebben",
+        "klasse ": "2B"
+    },
+    {
+        "select": 1,
+        "engels": "bind, fasten",
+        "italiaans": "legare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "binden",
+        "imperfectum singularis": "bond",
+        "imperfectum pluralis": "bonden",
+        "participium": "gebonden",
+        "auxiliare": "hebben",
+        "klasse ": "3A"
+    },
+    {
+        "select": 1,
+        "engels": "connect, join",
+        "italiaans": "collegare, connettere",
+        "reflexieve": "",
+        "prefix": "ver",
+        "infinitief": "binden",
+        "imperfectum singularis": "verbond",
+        "imperfectum pluralis": "verbonden",
+        "participium": "verbonden",
+        "auxiliare": "hebben",
+        "klasse ": "3A"
+    },
+    {
+        "select": 1,
+        "engels": "drink",
+        "italiaans": "bere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "drinken",
+        "imperfectum singularis": "dronk",
+        "imperfectum pluralis": "dronken",
+        "participium": "gedronken",
+        "auxiliare": "hebben",
+        "klasse ": "3A"
+    },
+    {
+        "select": 1,
+        "engels": "begin",
+        "italiaans": "cominciare",
+        "reflexieve": "",
+        "prefix": "be",
+        "infinitief": "ginnen",
+        "imperfectum singularis": "begon",
+        "imperfectum pluralis": "begonnen",
+        "participium": "begonnen",
+        "auxiliare": "zijn",
+        "klasse ": "3A"
+    },
+    {
+        "select": 1,
+        "engels": "climb",
+        "italiaans": "arrampicarsi",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "klimmen",
+        "imperfectum singularis": "klom",
+        "imperfectum pluralis": "klommen",
+        "participium": "geklommen",
+        "auxiliare": "hebben/zijn",
+        "klasse ": "3A"
+    },
+    {
+        "select": 1,
+        "engels": "ascend",
+        "italiaans": "ascendere",
+        "reflexieve": "",
+        "prefix": "be",
+        "infinitief": "klimmen",
+        "imperfectum singularis": "beklom",
+        "imperfectum pluralis": "beklommen",
+        "participium": "beklommen",
+        "auxiliare": "hebben",
+        "klasse ": "3A"
+    },
+    {
+        "select": 1,
+        "engels": "sound",
+        "italiaans": "suonare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "klinken",
+        "imperfectum singularis": "klonk",
+        "imperfectum pluralis": "klonken",
+        "participium": "geklonken",
+        "auxiliare": "hebben",
+        "klasse ": "3A"
+    },
+    {
+        "select": 1,
+        "engels": "jump, spring",
+        "italiaans": "saltare, balzare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "springen",
+        "imperfectum singularis": "sprong",
+        "imperfectum pluralis": "sprongen",
+        "participium": "gesprongen",
+        "auxiliare": "hebben/zijn",
+        "klasse ": "3A"
+    },
+    {
+        "select": 1,
+        "engels": "find",
+        "italiaans": "trovare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "vinden",
+        "imperfectum singularis": "vond",
+        "imperfectum pluralis": "vonden",
+        "participium": "gevonden",
+        "auxiliare": "hebben",
+        "klasse ": "3A"
+    },
+    {
+        "select": 1,
+        "engels": "find oneself",
+        "italiaans": "trovarsi",
+        "reflexieve": "zich",
+        "prefix": "be",
+        "infinitief": "vinden",
+        "imperfectum singularis": "bevond",
+        "imperfectum pluralis": "bevonden",
+        "participium": "bevonden",
+        "auxiliare": "hebben",
+        "klasse ": "3A"
+    },
+    {
+        "select": 1,
+        "engels": "win",
+        "italiaans": "vincere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "winnen",
+        "imperfectum singularis": "won",
+        "imperfectum pluralis": "wonnen",
+        "participium": "gewonnen",
+        "auxiliare": "hebben",
+        "klasse ": "3A"
+    },
+    {
+        "select": 1,
+        "engels": "sing",
+        "italiaans": "cantare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "zingen",
+        "imperfectum singularis": "zong",
+        "imperfectum pluralis": "zongen",
+        "participium": "gezongen",
+        "auxiliare": "hebben",
+        "klasse ": "3A"
+    },
+    {
+        "select": 1,
+        "engels": "count",
+        "italiaans": "valere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "gelden",
+        "imperfectum singularis": "gold",
+        "imperfectum pluralis": "golden",
+        "participium": "gegolden",
+        "auxiliare": "hebben",
+        "klasse ": "3B"
+    },
+    {
+        "select": 1,
+        "engels": "give, pour",
+        "italiaans": "regalare, versare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "schenken",
+        "imperfectum singularis": "schonk",
+        "imperfectum pluralis": "schonken",
+        "participium": "geschonken",
+        "auxiliare": "hebben",
+        "klasse ": "3B"
+    },
+    {
+        "select": 1,
+        "engels": "pull",
+        "italiaans": "tirare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "trekken",
+        "imperfectum singularis": "trok",
+        "imperfectum pluralis": "trokken",
+        "participium": "getrokken",
+        "auxiliare": "hebben",
+        "klasse ": "3B"
+    },
+    {
+        "select": 1,
+        "engels": "leave, depart",
+        "italiaans": "partire",
+        "reflexieve": "",
+        "prefix": "ver",
+        "infinitief": "trekken",
+        "imperfectum singularis": "vertrok",
+        "imperfectum pluralis": "vertrokken",
+        "participium": "vertrokken",
+        "auxiliare": "hebben",
+        "klasse ": "3B"
+    },
+    {
+        "select": 1,
+        "engels": "fight",
+        "italiaans": "combattere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "vechten",
+        "imperfectum singularis": "vocht",
+        "imperfectum pluralis": "vochten",
+        "participium": "gevochten",
+        "auxiliare": "hebben",
+        "klasse ": "3B"
+    },
+    {
+        "select": 1,
+        "engels": "send",
+        "italiaans": "spedire",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "zenden",
+        "imperfectum singularis": "zond",
+        "imperfectum pluralis": "zonden",
+        "participium": "gezonden",
+        "auxiliare": "hebben",
+        "klasse ": "3B"
+    },
+    {
+        "select": 1,
+        "engels": "swim",
+        "italiaans": "nuotare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "zwemmen",
+        "imperfectum singularis": "zwom",
+        "imperfectum pluralis": "zwommen",
+        "participium": "gezwommen",
+        "auxiliare": "hebben/zijn",
+        "klasse ": "3B"
+    },
+    {
+        "select": 1,
+        "engels": "become",
+        "italiaans": "diventare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "worden",
+        "imperfectum singularis": "werd",
+        "imperfectum pluralis": "werden",
+        "participium": "geworden",
+        "auxiliare": "zijn",
+        "klasse ": "Andere klinkerwisseling (voorheen Klasse 3b)"
+    },
+    {
+        "select": 1,
+        "engels": "help",
+        "italiaans": "aiutare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "helpen",
+        "imperfectum singularis": "hielp",
+        "imperfectum pluralis": "hielpen",
+        "participium": "geholpen",
+        "auxiliare": "hebben",
+        "klasse ": "3C"
+    },
+    {
+        "select": 1,
+        "engels": "die",
+        "italiaans": "morire",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "sterven",
+        "imperfectum singularis": "stierf",
+        "imperfectum pluralis": "stierven",
+        "participium": "gestorven",
+        "auxiliare": "zijn",
+        "klasse ": "3C"
+    },
+    {
+        "select": 1,
+        "engels": "break",
+        "italiaans": "rompere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "breken",
+        "imperfectum singularis": "brak",
+        "imperfectum pluralis": "braken",
+        "participium": "gebroken",
+        "auxiliare": "hebben",
+        "klasse ": 4
+    },
+    {
+        "select": 1,
+        "engels": "take",
+        "italiaans": "prendere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "nemen",
+        "imperfectum singularis": "nam",
+        "imperfectum pluralis": "namen",
+        "participium": "genomen",
+        "auxiliare": "hebben",
+        "klasse ": 4
+    },
+    {
+        "select": 1,
+        "engels": "shave",
+        "italiaans": "radere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "scheren",
+        "imperfectum singularis": "schoor",
+        "imperfectum pluralis": "schoren",
+        "participium": "geschoren",
+        "auxiliare": "hebben",
+        "klasse ": 4
+    },
+    {
+        "select": 1,
+        "engels": "speak",
+        "italiaans": "parlare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "spreken",
+        "imperfectum singularis": "sprak",
+        "imperfectum pluralis": "spraken",
+        "participium": "gesproken",
+        "auxiliare": "hebben",
+        "klasse ": 4
+    },
+    {
+        "select": 1,
+        "engels": "discuss, reserve",
+        "italiaans": "discutere, riservare",
+        "reflexieve": "",
+        "prefix": "be",
+        "infinitief": "spreken",
+        "imperfectum singularis": "besprak",
+        "imperfectum pluralis": "bespraken",
+        "participium": "besproken",
+        "auxiliare": "hebben",
+        "klasse ": 4
+    },
+    {
+        "select": 1,
+        "engels": "sting, stab",
+        "italiaans": "pungere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "steken",
+        "imperfectum singularis": "stak",
+        "imperfectum pluralis": "staken",
+        "participium": "gestoken",
+        "auxiliare": "hebben",
+        "klasse ": 4
+    },
+    {
+        "select": 1,
+        "engels": "steal",
+        "italiaans": "rubare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "stelen",
+        "imperfectum singularis": "stal",
+        "imperfectum pluralis": "stalen",
+        "participium": "gestolen",
+        "auxiliare": "hebben",
+        "klasse ": 4
+    },
+    {
+        "select": 1,
+        "engels": "weigh",
+        "italiaans": "pesare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "wegen",
+        "imperfectum singularis": "woog",
+        "imperfectum pluralis": "wogen",
+        "participium": "gewogen",
+        "auxiliare": "hebben",
+        "klasse ": 4
+    },
+    {
+        "select": 1,
+        "engels": "move",
+        "italiaans": "muovere",
+        "reflexieve": "",
+        "prefix": "be",
+        "infinitief": "wegen",
+        "imperfectum singularis": "bewoog",
+        "imperfectum pluralis": "bewogen",
+        "participium": "gbewogen",
+        "auxiliare": "hebben",
+        "klasse ": 4
+    },
+    {
+        "select": 1,
+        "engels": "come",
+        "italiaans": "venire",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "komen",
+        "imperfectum singularis": "kwam",
+        "imperfectum pluralis": "kwamen",
+        "participium": "gekomen",
+        "auxiliare": "zjin",
+        "klasse ": "Klasse 4, onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "prevent",
+        "italiaans": "prevenire",
+        "reflexieve": "",
+        "prefix": "voor",
+        "infinitief": "komen",
+        "imperfectum singularis": "voorkwam",
+        "imperfectum pluralis": "voorkwamen",
+        "participium": "voorkomen",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 4, onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "eat",
+        "italiaans": "mangiare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "eten",
+        "imperfectum singularis": "at",
+        "imperfectum pluralis": "aten",
+        "participium": "gegeten",
+        "auxiliare": "hebben",
+        "klasse ": 5
+    },
+    {
+        "select": 1,
+        "engels": "forget",
+        "italiaans": "dimenticare",
+        "reflexieve": "",
+        "prefix": "ver",
+        "infinitief": "geten",
+        "imperfectum singularis": "vergat",
+        "imperfectum pluralis": "vergaten",
+        "participium": "vergeten",
+        "auxiliare": "hebben/zijn",
+        "klasse ": 5
+    },
+    {
+        "select": 1,
+        "engels": "give",
+        "italiaans": "dare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "geven",
+        "imperfectum singularis": "gaf",
+        "imperfectum pluralis": "gaven",
+        "participium": "gegeven",
+        "auxiliare": "hebben",
+        "klasse ": 5
+    },
+    {
+        "select": 1,
+        "engels": "read",
+        "italiaans": "leggere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "lezen",
+        "imperfectum singularis": "las",
+        "imperfectum pluralis": "lazen",
+        "participium": "gelezen",
+        "auxiliare": "hebben",
+        "klasse ": 5
+    },
+    {
+        "select": 1,
+        "engels": "lie",
+        "italiaans": "sdraiarsi, distendere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "liggen",
+        "imperfectum singularis": "lag",
+        "imperfectum pluralis": "lagen",
+        "participium": "gelegen",
+        "auxiliare": "hebben",
+        "klasse ": 5
+    },
+    {
+        "select": 1,
+        "engels": "measure",
+        "italiaans": "misurare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "meten",
+        "imperfectum singularis": "mat",
+        "imperfectum pluralis": "maten",
+        "participium": "gemeten",
+        "auxiliare": "hebben",
+        "klasse ": 5
+    },
+    {
+        "select": 1,
+        "engels": "sit",
+        "italiaans": "sedersi",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "zitten",
+        "imperfectum singularis": "zat",
+        "imperfectum pluralis": "zaten",
+        "participium": "gezeten",
+        "auxiliare": "hebben",
+        "klasse ": 5
+    },
+    {
+        "select": 1,
+        "engels": "see",
+        "italiaans": "vedere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "zien",
+        "imperfectum singularis": "zag",
+        "imperfectum pluralis": "zagen",
+        "participium": "gezien",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 5, onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "see, consider",
+        "italiaans": "guardare con attenzione",
+        "reflexieve": "",
+        "prefix": "be",
+        "infinitief": "zien",
+        "imperfectum singularis": "bezag",
+        "imperfectum pluralis": "bezagen",
+        "participium": "bezien",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 5, onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "foresee, anticipate",
+        "italiaans": "prevedere",
+        "reflexieve": "",
+        "prefix": "voor",
+        "infinitief": "zien",
+        "imperfectum singularis": "voorzag",
+        "imperfectum pluralis": "voorzagen",
+        "participium": "voorzien",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 5, onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "wear, carry",
+        "italiaans": "indossare, portare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "dragen",
+        "imperfectum singularis": "droeg",
+        "imperfectum pluralis": "droegen",
+        "participium": "gedragen",
+        "auxiliare": "hebben",
+        "klasse ": 6
+    },
+    {
+        "select": 1,
+        "engels": "amount",
+        "italiaans": "ammontare",
+        "reflexieve": "",
+        "prefix": "be",
+        "infinitief": "dragen",
+        "imperfectum singularis": "bedroeg",
+        "imperfectum pluralis": "bedroegen",
+        "participium": "bedragen",
+        "auxiliare": "hebben",
+        "klasse ": 6
+    },
+    {
+        "select": 1,
+        "engels": "behave",
+        "italiaans": "comportarsi",
+        "reflexieve": "zich",
+        "prefix": "ge",
+        "infinitief": "dragen",
+        "imperfectum singularis": "gedroeg",
+        "imperfectum pluralis": "gedroegen",
+        "participium": "gedragen",
+        "auxiliare": "hebben",
+        "klasse ": 6
+    },
+    {
+        "select": 1,
+        "engels": "hit, strike",
+        "italiaans": "colpire, picchiare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "slaan",
+        "imperfectum singularis": "sloeg",
+        "imperfectum pluralis": "sloegen",
+        "participium": "geslagen",
+        "auxiliare": "hebben",
+        "klasse ": 6
+    },
+    {
+        "select": 1,
+        "engels": "hunt",
+        "italiaans": "cacciare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "jagen",
+        "imperfectum singularis": "joeg",
+        "imperfectum pluralis": "joegen",
+        "participium": "gejaagd",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 6, alleen sterk in de onvoltooid verleden tijd"
+    },
+    {
+        "select": 1,
+        "engels": "ask",
+        "italiaans": "domandare, chiedere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "vragen",
+        "imperfectum singularis": "vroeg",
+        "imperfectum pluralis": "vroegen",
+        "participium": "gevraagd",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 6, alleen sterk in de onvoltooid verleden tijd"
+    },
+    {
+        "select": 1,
+        "engels": "laugh",
+        "italiaans": "ridere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "lachen",
+        "imperfectum singularis": "lachte",
+        "imperfectum pluralis": "lachten",
+        "participium": "gelachen",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 6, half sterk"
+    },
+    {
+        "select": 1,
+        "engels": "stand",
+        "italiaans": "stare in piedi",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "staan",
+        "imperfectum singularis": "stond",
+        "imperfectum pluralis": "stonden",
+        "participium": "gestaan",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 6, onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "exist",
+        "italiaans": "esistere",
+        "reflexieve": "",
+        "prefix": "be",
+        "infinitief": "staan",
+        "imperfectum singularis": "bestond",
+        "imperfectum pluralis": "bestonden",
+        "participium": "bestaan",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 6, onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "understand, mean",
+        "italiaans": "intendere",
+        "reflexieve": "",
+        "prefix": "ver",
+        "infinitief": "staan",
+        "imperfectum singularis": "verstond",
+        "imperfectum pluralis": "verstonden",
+        "participium": "verstaan",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 6, onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "hang",
+        "italiaans": "pendere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "hangen",
+        "imperfectum singularis": "hing",
+        "imperfectum pluralis": "hingen",
+        "participium": "gehangen",
+        "auxiliare": "hebben",
+        "klasse ": 7
+    },
+    {
+        "select": 1,
+        "engels": "let",
+        "italiaans": "lasciare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "laten",
+        "imperfectum singularis": "liet",
+        "imperfectum pluralis": "lieten",
+        "participium": "gelaten",
+        "auxiliare": "hebben",
+        "klasse ": 7
+    },
+    {
+        "select": 1,
+        "engels": "walk",
+        "italiaans": "camminare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "lopen",
+        "imperfectum singularis": "liep",
+        "imperfectum pluralis": "liepen",
+        "participium": "gelopen",
+        "auxiliare": "hebben/zijn",
+        "klasse ": 7
+    },
+    {
+        "select": 1,
+        "engels": "elapse, expire",
+        "italiaans": "passare, scadere",
+        "reflexieve": "",
+        "prefix": "ver",
+        "infinitief": "lopen",
+        "imperfectum singularis": "verliep",
+        "imperfectum pluralis": "verliepen",
+        "participium": "verlopen",
+        "auxiliare": "zjin",
+        "klasse ": 7
+    },
+    {
+        "select": 1,
+        "engels": "guess",
+        "italiaans": "indovinare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "raden",
+        "imperfectum singularis": "raadde",
+        "imperfectum pluralis": "raadden",
+        "participium": "geraden",
+        "auxiliare": "hebben",
+        "klasse ": 7
+    },
+    {
+        "select": 1,
+        "engels": "call, shout",
+        "italiaans": "chiamare, gridare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "roepen",
+        "imperfectum singularis": "riep",
+        "imperfectum pluralis": "riepen",
+        "participium": "geroepen",
+        "auxiliare": "hebben",
+        "klasse ": 7
+    },
+    {
+        "select": 1,
+        "engels": "sleep",
+        "italiaans": "dormire",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "slapen",
+        "imperfectum singularis": "sliep",
+        "imperfectum pluralis": "sliepen",
+        "participium": "geslapen",
+        "auxiliare": "hebben",
+        "klasse ": 7
+    },
+    {
+        "select": 1,
+        "engels": "fall",
+        "italiaans": "cadere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "vallen",
+        "imperfectum singularis": "viel",
+        "imperfectum pluralis": "vielen",
+        "participium": "gevallen",
+        "auxiliare": "zijn",
+        "klasse ": 7
+    },
+    {
+        "select": 1,
+        "engels": "give birth, please",
+        "italiaans": "partorire, piacere",
+        "reflexieve": "",
+        "prefix": "be",
+        "infinitief": "vallen",
+        "imperfectum singularis": "beviel",
+        "imperfectum pluralis": "bevielen",
+        "participium": "bevallen",
+        "auxiliare": "zijn",
+        "klasse ": 7
+    },
+    {
+        "select": 1,
+        "engels": "catch",
+        "italiaans": "catturare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "vangen",
+        "imperfectum singularis": "ving",
+        "imperfectum pluralis": "vingen",
+        "participium": "gevangen",
+        "auxiliare": "hebben",
+        "klasse ": 7
+    },
+    {
+        "select": 1,
+        "engels": "receive",
+        "italiaans": "ricevere",
+        "reflexieve": "",
+        "prefix": "ont",
+        "infinitief": "vangen",
+        "imperfectum singularis": "ontving",
+        "imperfectum pluralis": "ontvingen",
+        "participium": "ontvangen",
+        "auxiliare": "hebben",
+        "klasse ": 7
+    },
+    {
+        "select": 1,
+        "engels": "replace",
+        "italiaans": "sostituire",
+        "reflexieve": "",
+        "prefix": "ver",
+        "infinitief": "vangen",
+        "imperfectum singularis": "verving",
+        "imperfectum pluralis": "vervingen",
+        "participium": "vervangen",
+        "auxiliare": "hebben",
+        "klasse ": 7
+    },
+    {
+        "select": 1,
+        "engels": "bake, fry",
+        "italiaans": "cuocere al forno, friggere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "bakken",
+        "imperfectum singularis": "bakte",
+        "imperfectum pluralis": "bakten",
+        "participium": "gebakken",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 7, half sterk"
+    },
+    {
+        "select": 1,
+        "engels": "roast, fry",
+        "italiaans": "arrostire, friggere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "braden",
+        "imperfectum singularis": "braadde",
+        "imperfectum pluralis": "braadden",
+        "participium": "gebraden",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 7, half sterk"
+    },
+    {
+        "select": 1,
+        "engels": "be called",
+        "italiaans": "chiamarsi",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "heten",
+        "imperfectum singularis": "heette",
+        "imperfectum pluralis": "heetten",
+        "participium": "geheten",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 7, half sterk"
+    },
+    {
+        "select": 1,
+        "engels": "separate, divide",
+        "italiaans": "separare, dividere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "scheiden",
+        "imperfectum singularis": "scheidde",
+        "imperfectum pluralis": "scheidden",
+        "participium": "gescheiden",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 7, half sterk"
+    },
+    {
+        "select": 1,
+        "engels": "stretch, tighten",
+        "italiaans": "tendere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "spannen",
+        "imperfectum singularis": "spande",
+        "imperfectum pluralis": "spanden",
+        "participium": "gespannen",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 7, half sterk"
+    },
+    {
+        "select": 1,
+        "engels": "relax, slacken",
+        "italiaans": "rilassare, distendere",
+        "reflexieve": "",
+        "prefix": "ont",
+        "infinitief": "spannen",
+        "imperfectum singularis": "ontspande",
+        "imperfectum pluralis": "ontspanden",
+        "participium": "ontspannen",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 7, half sterk"
+    },
+    {
+        "select": 1,
+        "engels": "go",
+        "italiaans": "andare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "gaan",
+        "imperfectum singularis": "ging",
+        "imperfectum pluralis": "gingen",
+        "participium": "gegaan",
+        "auxiliare": "zijn",
+        "klasse ": "Klasse 7, onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "hold, keep, love",
+        "italiaans": "tenere, amare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "houden",
+        "imperfectum singularis": "hield",
+        "imperfectum pluralis": "hielden",
+        "participium": "gehouden",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 7, onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "maintain",
+        "italiaans": "mantenere",
+        "reflexieve": "",
+        "prefix": "onder",
+        "infinitief": "houden",
+        "imperfectum singularis": "onderhield",
+        "imperfectum pluralis": "onderhielden",
+        "participium": "onderhouden",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 7, onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "remember",
+        "italiaans": "ricordare",
+        "reflexieve": "",
+        "prefix": "ont",
+        "infinitief": "houden",
+        "imperfectum singularis": "onthield",
+        "imperfectum pluralis": "onthielden",
+        "participium": "onthouden",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 7, onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "abstain, refrain",
+        "italiaans": "astenersi",
+        "reflexieve": "zich",
+        "prefix": "ont",
+        "infinitief": "houden",
+        "imperfectum singularis": "onthield",
+        "imperfectum pluralis": "onthielden",
+        "participium": "onthouden",
+        "auxiliare": "hebben",
+        "klasse ": "Klasse 7, onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "bring",
+        "italiaans": "portare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "brengen",
+        "imperfectum singularis": "bracht",
+        "imperfectum pluralis": "brachten",
+        "participium": "gebracht",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "think",
+        "italiaans": "pensare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "denken",
+        "imperfectum singularis": "dacht",
+        "imperfectum pluralis": "dachten",
+        "participium": "gedacht",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "consider",
+        "italiaans": "considerare",
+        "reflexieve": "",
+        "prefix": "be",
+        "infinitief": "denken",
+        "imperfectum singularis": "bedacht",
+        "imperfectum pluralis": "bedachten",
+        "participium": "bedacht",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "suspect",
+        "italiaans": "sospettare",
+        "reflexieve": "",
+        "prefix": "ver",
+        "infinitief": "denken",
+        "imperfectum singularis": "verdacht",
+        "imperfectum pluralis": "verdachten",
+        "participium": "verdacht",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "do",
+        "italiaans": "fare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "doen",
+        "imperfectum singularis": "deed",
+        "imperfectum pluralis": "deden",
+        "participium": "gedaan",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "satisfy, comply",
+        "italiaans": "soddisfare",
+        "reflexieve": "",
+        "prefix": "vol",
+        "infinitief": "doen",
+        "imperfectum singularis": "voldeed",
+        "imperfectum pluralis": "voldeden",
+        "participium": "voldaan",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "have",
+        "italiaans": "avere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "hebben",
+        "imperfectum singularis": "had",
+        "imperfectum pluralis": "hadden",
+        "participium": "gehad",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "buy",
+        "italiaans": "comprare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "kopen",
+        "imperfectum singularis": "kocht",
+        "imperfectum pluralis": "kochten",
+        "participium": "gekocht",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "sell",
+        "italiaans": "vendere",
+        "reflexieve": "",
+        "prefix": "ver",
+        "infinitief": "kopen",
+        "imperfectum singularis": "verkocht",
+        "imperfectum pluralis": "verkochten",
+        "participium": "verkocht",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "will",
+        "italiaans": "volere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "willen",
+        "imperfectum singularis": "wilde, wou",
+        "imperfectum pluralis": "wilden, wouden",
+        "participium": "gewild",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "say",
+        "italiaans": "dire",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "zeggen",
+        "imperfectum singularis": "zei",
+        "imperfectum pluralis": "zeiden",
+        "participium": "gezegd",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "be",
+        "italiaans": "essere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "zijn",
+        "imperfectum singularis": "was",
+        "imperfectum pluralis": "waren",
+        "participium": "geweest",
+        "auxiliare": "zijn",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "search",
+        "italiaans": "cercare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "zoeken",
+        "imperfectum singularis": "zocht",
+        "imperfectum pluralis": "zochten",
+        "participium": "gezocht",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "visit",
+        "italiaans": "visitare",
+        "reflexieve": "",
+        "prefix": "be",
+        "infinitief": "zoeken",
+        "imperfectum singularis": "bezocht",
+        "imperfectum pluralis": "bezochten",
+        "participium": "bezocht",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "request, beg",
+        "italiaans": "richiedere, pregare",
+        "reflexieve": "",
+        "prefix": "ver",
+        "infinitief": "zoeken",
+        "imperfectum singularis": "verzocht",
+        "imperfectum pluralis": "verzochten",
+        "participium": "verzocht",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "examine, investigate",
+        "italiaans": "esaminare, indagare",
+        "reflexieve": "",
+        "prefix": "onder",
+        "infinitief": "zoeken",
+        "imperfectum singularis": "onderzocht",
+        "imperfectum pluralis": "onderzochten",
+        "participium": "onderzocht",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "dare",
+        "italiaans": "osare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "durven",
+        "imperfectum singularis": "durfde",
+        "imperfectum pluralis": "durfden",
+        "participium": "gedurfd",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "can",
+        "italiaans": "potere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "kunnen",
+        "imperfectum singularis": "kon",
+        "imperfectum pluralis": "konden",
+        "participium": "gekund",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "must",
+        "italiaans": "dovere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "moeten",
+        "imperfectum singularis": "moest",
+        "imperfectum pluralis": "moesten",
+        "participium": "gemoeten",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "may",
+        "italiaans": "potere, essere autorizzati",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "mogen",
+        "imperfectum singularis": "mocht",
+        "imperfectum pluralis": "mochten",
+        "participium": "gemogen",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "know",
+        "italiaans": "sapere",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "weten",
+        "imperfectum singularis": "wist",
+        "imperfectum pluralis": "wisten",
+        "participium": "geweten",
+        "auxiliare": "hebben",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "should, shall",
+        "italiaans": "dovrebbe",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "zullen",
+        "imperfectum singularis": "zou",
+        "imperfectum pluralis": "zouden",
+        "participium": "",
+        "auxiliare": "",
+        "klasse ": "Onregelmatig"
+    },
+    {
+        "select": 1,
+        "engels": "wash",
+        "italiaans": "lavare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "wassen",
+        "imperfectum singularis": "waste",
+        "imperfectum pluralis": "wasten",
+        "participium": "gewassen",
+        "auxiliare": "hebben",
+        "klasse ": "Zwak"
+    },
+    {
+        "select": 1,
+        "engels": "work",
+        "italiaans": "lavorare",
+        "reflexieve": "",
+        "prefix": "",
+        "infinitief": "werken",
+        "imperfectum singularis": "werkte",
+        "imperfectum pluralis": "werkten",
+        "participium": "gewerkt",
+        "auxiliare": "hebben",
+        "klasse ": "Zwak"
+    }
+]
+    </script>
+
+    <!-- The script to handle the logic of the exercise -->
+    <script>
+// Copyright (C) 2023, European Union, Cristiano L. Fontana
+//
+// This program is free software: you can redistribute it and/or modify it under
+// the terms of the GNU General Public License as published by the Free Software
+// Foundation, either version 3 of the License, or (at your option) any later
+// version.
+//
+// This program is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License along with
+// this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+// Creating an Immediately Invoked Function Expression (IIFE) to wrap the code
+// and not polluting the global namespace
+(function() {
+    var counterCorrect = 0;
+    var counterAll = 0;
+
+    // The verba information was taken from:
+    // https://nl.wikipedia.org/wiki/Lijst_van_sterke_en_onregelmatige_werkwoorden_in_het_Nederlands
+    var verba = JSON.parse(document.getElementById('verba').textContent);
+    
+    // Get the elements from the document
+    var buttonStart = document.getElementById("start");
+    var selectLanguage = document.getElementById("language");
+    var divOutput = document.getElementById("output");
+    
+    // Get the elements from the output div
+    var inputInfinitief = document.getElementById("infinitief");
+    var inputImperfectumSingularis = document.getElementById("imperfectum_singularis");
+    var inputImperfectumPluralis = document.getElementById("imperfectum_pluralis");
+    var inputParticipium = document.getElementById("participium");
+    var buttonCheck = document.getElementById("check");
+    
+    var divResult = document.getElementById("result");
+    var divCorrect = document.getElementById("correct_version");
+    var divCounter = document.getElementById("counter");
+    
+    var functionCheck = null;
+    
+    // Add an event listener to the start button
+    buttonStart.addEventListener("click", function() {
+        // Clear up the output
+        divResult.innerHTML = "";
+        divCorrect.innerHTML = "";
+        inputInfinitief.value = "";
+        inputImperfectumSingularis.value = "";
+        inputImperfectumPluralis.value = "";
+        inputParticipium.value = "";
+    
+        // Choose a random entry from the data array
+        var chosenEntry = verba[Math.floor(Math.random() * verba.length)];
+    
+        var language = selectLanguage.value;
+    
+        // Show the chosen entry in the output div
+        if (language == "nederlands") {
+            const infinitief = chosenEntry.prefix + chosenEntry.infinitief;
+            divOutput.innerHTML = infinitief;
+            inputInfinitief.value = infinitief;
+        } else if (language == "engels") {
+            divOutput.innerHTML = chosenEntry.engels;
+        } else if (language == "italiaans") {
+            divOutput.innerHTML = chosenEntry.italiaans;
+        }
+    
+        // Add an event listener to the check button
+        buttonCheck.removeEventListener("click", functionCheck);
+    
+        functionCheck = function() {
+            // Get the values from the input fields
+            var valueInfinitief = inputInfinitief.value.trim().toLowerCase();
+            var valueImperfectumSingularis = inputImperfectumSingularis.value.trim().toLowerCase();
+            var valueImperfectumPluralis = inputImperfectumPluralis.value.trim().toLowerCase();
+            var valueParticipium = inputParticipium.value.trim().toLowerCase();
+    
+            counterAll += 1;
+    
+            // Compare the values with the chosen entry
+            if (valueInfinitief == (chosenEntry["prefix"] + chosenEntry["infinitief"])
+                && valueImperfectumSingularis == chosenEntry["imperfectum singularis"]
+                && valueImperfectumPluralis == chosenEntry["imperfectum pluralis"]
+                && valueParticipium == chosenEntry.participium) {
+    
+                counterCorrect += 1;
+    
+                // If they match, show a success message
+                divResult.innerHTML = "Correct!!";
+                divCorrect.innerHTML = "";
+            } else {
+                // If they don't match, show an error message
+                divResult.innerHTML = "Verkeerd";
+                divCorrect.innerHTML = "Correct antwoord: ";
+    
+                if (language !== "nederlands") {
+                    divCorrect.innerHTML += chosenEntry.prefix + chosenEntry.infinitief + ", ";
+                }
+    
+                divCorrect.innerHTML = "<ul>";
+                divCorrect.innerHTML += "<li><em>Infinitief:</em> " + (chosenEntry["prefix"] + chosenEntry["infinitief"]) + "</li>";
+                divCorrect.innerHTML += "<li><em>Imperfectum singularis:</em> " + chosenEntry["imperfectum singularis"] + "</li>";
+                divCorrect.innerHTML += "<li><em>Imperfectum pluralis:</em> " + chosenEntry["imperfectum pluralis"] + "</li>";
+                divCorrect.innerHTML += "<li><em>Participium:</em> " + chosenEntry["participium"] + "</li>";
+                divCorrect.innerHTML += "</ul>";
+            }
+    
+            divCounter.innerHTML = counterCorrect + "/" + counterAll;
+        };
+    
+        buttonCheck.addEventListener("click", functionCheck);
+    });
+})();
+
+    </script>
+</body>
+</html>
