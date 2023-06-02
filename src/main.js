@@ -104,6 +104,11 @@
                 divCorrect.innerHTML += "<li><em>Imperfectum singularis:</em> " + chosenEntry["imperfectum singularis"] + "</li>";
                 divCorrect.innerHTML += "<li><em>Imperfectum pluralis:</em> " + chosenEntry["imperfectum pluralis"] + "</li>";
                 divCorrect.innerHTML += "<li><em>Participium:</em> " + chosenEntry["participium"] + "</li>";
+
+                if (chosenEntry["vocaalverandering"].length > 0) {
+                    divCorrect.innerHTML += "<li><em>Vocaalverandering:</em> " + chosenEntry["vocaalverandering"] + "</li>";
+                }
+
                 divCorrect.innerHTML += "</ul>";
             }
     
